@@ -1,16 +1,464 @@
-//файл обнуляющих стилей
 @import "nullstyle.scss";
+@import "fonts.scss";
 
 body {
       height: 100%;
-      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-      background-color: #202020;
-      color: #fafafa;
+      font-family: "OpenSans-Light", sans-serif;
+      background-color: #f4f4f4;
+      color: #202020;
       font-size: 16px;
       line-height: 24px;
 }
 
 .wrapper {
       min-height: 100%;
-      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+}
+
+.container {
+      max-width: 1185px;
+      margin: 0 auto;
+}
+
+// ----------------------------HEADER---------------------------------
+
+.header {
+      position: relative;
+      color: #ffffff;
+
+      &__background {
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+      }
+
+      &__body {
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 904px;
+            padding: 0 10px;
+      }
+      @media (min-width: 1185px) {
+            &__body {
+                  padding: 0;
+            }
+      }
+
+      &__row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+      }
+      // &__body > &__row:nth-child(1) {
+      //       justify-content: space-between;
+      //       padding: 74px 0 0 0;
+      // }
+
+      &__menu-row {
+            justify-content: space-between;
+            padding: 74px 0 0 0;
+      }
+
+      &__menu-row-active {
+            padding: 74px 10px 16px 10px !important;
+            position: fixed;
+            z-index: 4;
+            width: 100%;
+            top: 0;
+            left: 0;
+            animation-name: slideup;
+            animation-timing-function: ease;
+            animation-duration: 0.4s;
+            animation-fill-mode: forwards;
+      }
+      @keyframes slideup {
+            0% {
+                  background-color: rgba(0, 0, 0, 0.1);
+                  top: 0;
+            }
+            100% {
+                  background-color: rgba(0, 0, 0, 0.7);
+                  top: -37px;
+            }
+      }
+      @media (min-width: 1185px) {
+            &__menu-row-active {
+                  padding: 74px 0 16px 0;
+            }
+      }
+
+      &__menu-row-default {
+            padding: 74px 10px 16px 10px !important;
+            position: fixed;
+            z-index: 4;
+            width: 100%;
+            top: 0;
+            left: 0;
+            animation-name: slidedown;
+            animation-timing-function: ease;
+            animation-duration: 0.4s;
+            animation-fill-mode: forwards;
+      }
+      @keyframes slidedown {
+            0% {
+                  background-color: rgba(0, 0, 0, 0.7);
+                  top: -37px;
+            }
+            100% {
+                  background-color: rgba(0, 0, 0, 0);
+                  top: 0;
+            }
+      }
+      @media (min-width: 1185px) {
+            &__menu-row-default {
+                  padding: 74px 0 16px 0;
+            }
+      }
+
+      &__column {
+      }
+
+      &__logo {
+            font-family: "Oswald-Bold", sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 83%;
+            letter-spacing: 2.304px;
+            display: inline-block;
+            color: #ffffff;
+            cursor: pointer;
+            margin: 0 60px 0 0;
+            transition: 0.2s;
+      }
+      &__logo:hover {
+            text-shadow: 0px 0px 10px #ffffff;
+      }
+
+      &__burger-menu-button {
+            margin: 0 10px 0 0;
+            position: relative;
+            top: auto;
+            z-index: 3;
+            width: 40px;
+            height: 40px;
+            border-bottom: 2.5px solid #4caf50;
+            transition: width 0.2s ease-out;
+            cursor: pointer;
+      }
+      &__burger-menu-button:hover {
+            width: 30px;
+      }
+      &__burger-menu-button:active {
+            width: 30px;
+      }
+      &__burger-menu-button::before {
+            content: "";
+            position: absolute;
+            z-index: 3;
+            border-bottom: 2.5px solid #4caf50;
+            width: 45px;
+            right: 0;
+            top: 0;
+            transition: 0.4s;
+      }
+      &__burger-menu-button:hover:before {
+            width: 50px;
+      }
+      &__burger-menu-button:active:before {
+            width: 50px;
+      }
+      &__burger-menu-button::after {
+            content: "";
+            position: absolute;
+            z-index: 3;
+            border-bottom: 2.5px solid #4caf50;
+            width: 25px;
+            right: 0;
+            bottom: 45%;
+            transition: 0.3s;
+      }
+      &__burger-menu-button:hover:after {
+            width: 40px;
+      }
+      &__burger-menu-button:active:after {
+            width: 40px;
+      }
+
+      @media (min-width: 720px) {
+            &__burger-menu-button {
+                  display: none;
+            }
+      }
+
+      &__menu {
+            display: none;
+      }
+      @media (min-width: 728px) {
+            &__menu {
+                  display: block;
+                  top: auto;
+                  right: 0;
+                  left: 0;
+                  width: auto;
+                  height: auto;
+                  position: relative;
+                  background-color: transparent;
+            }
+      }
+
+      &__burger-menu {
+            display: flex;
+            justify-content: flex-end;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 100%;
+            height: 100vh;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.5);
+      }
+      @media (min-width: 728px) {
+            &__burger-menu {
+                  display: none;
+            }
+      }
+
+      &__messages {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1 1 auto;
+            overflow: hidden;
+      }
+
+      &__message {
+            position: relative;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+      }
+
+      &__slogan {
+            font-family: "Oswald-Medium", sans-serif;
+            font-weight: 500;
+            font-size: 72px;
+            line-height: 148.6%;
+            letter-spacing: 4.608px;
+            text-transform: uppercase;
+            margin: 0 0 24.5px 0;
+            text-align: center;
+      }
+
+      &__subslogan {
+            font-family: "OpenSans-Regular", sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 135%;
+            letter-spacing: 1.28px;
+            text-align: center;
+      }
+
+      &__tabs {
+            display: flex;
+            justify-content: center;
+            margin: 0 0 24px 0;
+      }
+
+      &__tab {
+            font-family: "Oswald-Blold", sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 150%;
+            letter-spacing: 1.152px;
+            color: rgba(255, 255, 255, 0.437245);
+            margin: 0 8.99px 0 0;
+            display: flex;
+            align-items: flex-end;
+            cursor: pointer;
+            transition: 0.2s;
+      }
+      &__tab:hover {
+            color: #ffffff;
+      }
+
+      &__tabs &__tab:last-child {
+            margin: 0;
+      }
+
+      &__tab-active {
+            position: relative;
+            z-index: 2;
+            top: 2.5px;
+            font-family: "Oswald-Bold", sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 147.222%;
+            letter-spacing: 2.304px;
+            color: #ffffff;
+            display: flex;
+            align-items: flex-end;
+      }
+      &__tab-active::before {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            border-bottom: 2px solid #4caf50;
+            width: 35%;
+            right: 70%;
+            bottom: 45%;
+      }
+      &__tab-active::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            border-bottom: 2px solid #4caf50;
+            width: 54.7%;
+            left: 48.5%;
+            bottom: 45%;
+      }
+}
+.menu {
+      &__list {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            justify-content: space-between;
+            max-height: 100%;
+            flex-wrap: wrap;
+            padding: 200px 50px 200px 50px;
+            background-color: #000000;
+            box-shadow: 0px 0px 0.3px 1px #4caf50;
+      }
+      @media (min-width: 728px) {
+            &__list {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: flex-end;
+                  flex-wrap: wrap;
+                  padding: 0;
+                  background-color: transparent;
+                  box-shadow: none;
+            }
+      }
+
+      &__item {
+            position: relative;
+      }
+      &__item::before {
+            content: "";
+            position: absolute;
+            border-bottom: 2px solid #4caf50;
+            width: 19.44px;
+            right: 0;
+            bottom: 0;
+            transition: 0.2s;
+      }
+      &__item:last-child:before {
+            content: "";
+            position: absolute;
+            border-bottom: 2px solid #4caf50;
+            width: 17.97px;
+            right: 0;
+            bottom: 0;
+            transition: 0.2s;
+      }
+
+      &__item:hover:before {
+            content: "";
+            position: absolute;
+            border-bottom: 2px solid #4caf50;
+            width: 117.03%;
+            right: 0;
+            bottom: 0;
+      }
+
+      @media (min-width: 728px) {
+            &__item:not(:last-child) {
+                  margin: 0 58.31px 0 0;
+            }
+      }
+
+      &__link {
+            display: inline-block;
+            font-family: "Oswald-Regular", sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 150%;
+            letter-spacing: 1.94px;
+            color: #ffffff;
+      }
+}
+
+// -----------------------------------------MAIN-------------------------------------------
+
+// -----------------------------------------FOOTER-----------------------------------------
+
+// -----------------------------------------ADDITIONAL-------------------------------------
+.visible {
+      display: flex;
+      animation-name: slidein;
+      animation-timing-function: ease;
+      animation-duration: 0.2s;
+}
+.active {
+      position: fixed;
+      animation-name: slidein;
+      animation-timing-function: ease;
+      animation-duration: 0.2s;
+      animation-fill-mode: forwards;
+}
+
+@keyframes slidein {
+      0% {
+            left: 100%;
+            top: 0;
+      }
+      100% {
+            left: 0;
+            top: 0;
+      }
+}
+.unactive {
+      animation-name: slideout;
+      animation-timing-function: ease;
+      animation-duration: 0.2s;
+      animation-fill-mode: forwards;
+}
+
+@keyframes slideout {
+      0% {
+            left: 0;
+            top: 0;
+      }
+      100% {
+            left: 100%;
+            top: 0;
+      }
+}
+
+.active-burger-button {
+      animation-name: slideleft;
+      animation-timing-function: ease;
+      animation-duration: 0.2s;
+      animation-fill-mode: forwards;
+}
+@keyframes slideleft {
+      0% {
+            right: 0;
+            top: auto;
+      }
+      100% {
+            right: 40px;
+            top: auto;
+      }
 }
