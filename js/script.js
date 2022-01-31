@@ -52,10 +52,12 @@ const burgerMenu = document.querySelector('.header__burger-menu');
 
 burgerButton.addEventListener('click', function (e) {
     if (burgerButton.classList.contains('active-burger-button') === true) {
+        burgerButton.classList.add('deactive-burger-button');
         burgerButton.classList.remove('active-burger-button');
         burgerMenu.classList.add('unactive');
         burgerMenu.classList.remove('active');
     } else {
+        burgerButton.classList.remove('deactive-burger-button');
         burgerButton.classList.add('active-burger-button');
         burgerMenu.classList.remove('unactive');
         burgerMenu.classList.add('active');
@@ -65,6 +67,7 @@ burgerButton.addEventListener('click', function (e) {
 burgerMenu.addEventListener('click', function (e) {
     let target = e.target;
     if (target.classList.contains('menu__link') === false && target.classList.contains('menu__list') === false) {
+        burgerButton.classList.add('deactive-burger-button');
         burgerButton.classList.remove('active-burger-button');
         burgerMenu.classList.add('unactive');
         burgerMenu.classList.remove('active');
