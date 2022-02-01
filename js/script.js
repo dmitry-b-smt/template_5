@@ -99,4 +99,33 @@ window.addEventListener('scroll', function () {
         add_blur_class_on_return();
     }
 
-})
+});
+
+const servicesColumns = document.querySelectorAll('.services__column');
+
+servicesColumns.forEach(function (item, i,) {
+    let serviceColumnIndex = i;
+    item.setAttribute('data-serviceindex', serviceColumnIndex);
+});
+
+
+const servicesItems = document.querySelectorAll('.services__item');
+servicesItems.forEach(function (item) {
+    item.addEventListener('mouseenter', function (e) {
+        let column = item.closest('[data-serviceindex]');
+        let icon = column.querySelector('img');
+        let link = column.querySelector('.services__service-link');
+        icon.style.opacity = 1;
+        link.style.opacity = 1;
+    })
+});
+
+servicesItems.forEach(function (item) {
+    item.addEventListener('mouseleave', function (e) {
+        let column = item.closest('[data-serviceindex]');
+        let icon = column.querySelector('img');
+        let link = column.querySelector('.services__service-link');
+        icon.style.opacity = 0.25;
+        link.style.opacity = 0.5;
+    })
+});
