@@ -254,3 +254,61 @@ worksCards.forEach(function (item) {
         link.classList.remove('card__link-active');
     })
 });
+
+// -----------------------INFO----------------------
+
+const members = document.querySelectorAll('.team__card');
+
+
+members.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+        let target = e.target;
+        if (target.classList.contains('member__info')) {
+            let parent = item.closest('.member');
+            let info = parent.querySelector('.member__info');
+            let name = parent.querySelector('.member__name');
+            name.classList.add('member__name-active');
+            info.classList.remove('member__info-default');
+            info.classList.add('member__info-active');
+        };
+    })
+});
+
+members.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+        let target = e.target;
+        if (target.classList.contains('member__background')) {
+            let parent = item.closest('.member');
+            let info = parent.querySelector('.member__info');
+            let name = parent.querySelector('.member__name');
+            name.classList.remove('member__name-active');
+            info.classList.remove('member__info-active');
+            info.classList.add('member__info-default');
+        };
+    })
+});
+
+
+members.forEach(function (item) {
+    item.addEventListener('mouseenter', function (e) {
+        let parent = item.closest('.member');
+        let info = parent.querySelector('.member__info');
+        let name = parent.querySelector('.member__name');
+        name.classList.add('member__name-active');
+        info.classList.remove('member__info-default');
+        info.classList.add('member__info-active');
+    })
+});
+
+members.forEach(function (item) {
+    item.addEventListener('mouseleave', function (e) {
+        let parent = item.closest('.member');
+        let info = parent.querySelector('.member__info');
+        let name = parent.querySelector('.member__name');
+        name.classList.remove('member__name-active');
+        info.classList.remove('member__info-active');
+        info.classList.add('member__info-default');
+    })
+});
+
+
