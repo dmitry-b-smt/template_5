@@ -311,4 +311,146 @@ members.forEach(function (item) {
     })
 });
 
+// --------------------------RATING-----------------------------
 
+const ratings = document.querySelectorAll('.slide__rating');
+
+if (ratings.length > 0) {
+    initRaings();
+}
+
+function initRaings() {
+    let ratingStars;
+    let ratingValue;
+    ratings.forEach(function (item) {
+        const rating = item;
+        initRating(rating);
+    });
+
+    function initRating(rating) {
+        initRatingVars(rating);
+
+        setActiveStars();
+
+        if (rating.classList.contains('rating-set')) {
+            setRating(rating);
+        }
+    }
+
+    function initRatingVars(rating) {
+        ratingStars = rating.querySelectorAll('.slide__rating-star');
+        ratingValue = rating.querySelector('.slide__rating-value');
+    }
+
+    function setActiveStars(value = ratingValue.innerHTML) {
+        ratingStars.forEach(function (item, i) {
+            item.classList.remove('slide__rating-star-active');
+            if (i < value) {
+                item.classList.add('slide__rating-star-active');
+            }
+        })
+    }
+
+    function setBaseStars(value = ratingValue.innerHTML) {
+        ratingStars.forEach(function (item, i) {
+            if (i >= value) {
+                item.classList.remove('slide__rating-star-active');
+            }
+        })
+    }
+
+    function setRating(rating) {
+        const ratingItems = rating.querySelectorAll('.slide__rating-item');
+        ratingItems.forEach(function (item, i) {
+            item.addEventListener('mouseenter', function (e) {
+                initRatingVars(rating);
+                setActiveStars(item.value);
+            });
+            item.addEventListener('mouseleave', function (e) {
+                setBaseStars();
+                setActiveStars();
+            });
+            item.addEventListener('click', function (e) {
+                initRatingVars(rating);
+
+                if (rating.dataset.ajax) {
+                    setRatingValue(rating.value, rating);
+                } else {
+                    ratingValue.innerHTML = i + 1;
+                    setActiveStars();
+                }
+            })
+        })
+    }
+
+    async function setRatingValue(value, rating) {
+        let responce = await fetch('rating.json', {
+            method: 'GET',
+        });
+        if (responce.ok) {
+            const result = await responce.json();
+            const newRating = result.newRating;
+            ratingValue.innerHTML = newRating;
+            setActiveStars();
+        }
+    }
+}
+
+
+// ----------------------TESTIMONIALS SLIDER---------------------
+
+const testimonialsSliderContainer = document.querySelector('.testimonials');
+const slidesContainer = document.querySelector('.slider__tape');
+const sliderTape = slidesContainer.querySelectorAll('.slider__item');
+var currentSlide = 0;
+var previousSlide;
+var nextSlide;
+
+sliderTape.forEach(function (item, i) {
+    item.setAttribute('data-slideindex', i);
+})
+
+function showCurrentSlide(current) {
+    sliderTape.forEach(function (item) {
+        item.classList.remove('slider__item-active');
+        if (Number(item.dataset.slideindex) === current) {
+            item.classList.add('slider__item-active');
+        } else {
+            item.classList.remove('slider__item-acitve');
+        }
+    })
+};
+
+function getPreviousSlide(current) {
+    if (current === 0) {
+        previousSlide = sliderTape.length - 1;
+    } else {
+        previousSlide = currentSlide - 1;
+    }
+    return previousSlide
+};
+
+
+function getNextSlide(current) {
+    if (current === sliderTape.length - 1) {
+        nextSlide = 0;
+    } else {
+        nextSlide = currentSlide + 1;
+    }
+    return nextSlide
+};
+
+const buttonLeft = testimonialsSliderContainer.querySelector('.slider__arrow-left');
+const buttonRight = testimonialsSliderContainer.querySelector('.slider__arrow-right');
+
+showCurrentSlide(currentSlide);
+
+buttonLeft.addEventListener('click', function (e) {
+    currentSlide = getPreviousSlide(currentSlide);
+    showCurrentSlide(currentSlide);
+});
+
+buttonRight.addEventListener('click', function (e) {
+    currentSlide = getNextSlide(currentSlide);
+    showCurrentSlide(currentSlide);
+});
