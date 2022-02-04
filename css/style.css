@@ -1397,7 +1397,7 @@ body {
 
 .works__more {
   position: relative;
-  bottom: 56px;
+  bottom: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1412,6 +1412,12 @@ body {
   text-transform: lowercase;
   color: #252525;
   cursor: pointer;
+}
+
+@media (min-width: 728px) {
+  .works__more {
+    bottom: 56px;
+  }
 }
 
 .works__more > span {

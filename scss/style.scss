@@ -1000,7 +1000,7 @@ body {
 
       &__more {
             position: relative;
-            bottom: 56px;
+            bottom: 20px;
             display: flex;
             justify-content: flex-end;
             font-family: "Oswald-Regular", sans-serif;
@@ -1011,6 +1011,11 @@ body {
             text-transform: lowercase;
             color: #252525;
             cursor: pointer;
+      }
+      @media (min-width: 728px) {
+            &__more {
+                  bottom: 56px;
+            }
       }
       &__more > span {
             position: relative;
