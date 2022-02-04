@@ -454,3 +454,71 @@ buttonRight.addEventListener('click', function (e) {
     currentSlide = getNextSlide(currentSlide);
     showCurrentSlide(currentSlide);
 });
+
+// ------------------------SCROLL TO-----------------------------
+
+const headerLogo = document.querySelector('.header__logo');
+const worksLinks = document.querySelectorAll('[data-section="works"]');
+const aboutLinks = document.querySelectorAll('[data-section="about"]');
+const servicesLinks = document.querySelectorAll('[data-section="services"]');
+const teamLinks = document.querySelectorAll('[data-section="blog"]');
+const contactLinks = document.querySelectorAll('[data-section="contact"]');
+
+const logoSection = document.querySelector('header');
+const worksSection = document.querySelector('.works');
+const aboutSection = document.querySelector('.we');
+const servicesSection = document.querySelector('.services');
+const teamSection = document.querySelector('.team');
+const contactSection = document.querySelector('.footer');
+
+headerLogo.addEventListener('click', function (e) {
+    e.preventDefault();
+    logoSection.scrollIntoView({
+        behavior: "smooth"
+    });
+});
+
+worksLinks.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+        e.preventDefault();
+        worksSection.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+});
+
+aboutLinks.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+        e.preventDefault();
+        aboutSection.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+});
+
+servicesLinks.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+        e.preventDefault();
+        servicesSection.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+});
+
+teamLinks.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+        e.preventDefault();
+        teamSection.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+});
+
+contactLinks.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+        e.preventDefault();
+        contactSection.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+});
